@@ -10,7 +10,7 @@ import i18n from '../../../config/i18n'
 
 const SEO = ({ title, desc, banner, pathname, article, node, locale }) => {
   const { site } = useStaticQuery(query)
-  const { defaultTitle, defaultDescription, siteLanguage, headline, categories } = i18n[locale]
+  const { defaultTitle, defaultDescription, siteLanguage, headline, proizvodi } = i18n[locale]
 
   const {
     buildTime,
@@ -79,8 +79,8 @@ const SEO = ({ title, desc, banner, pathname, article, node, locale }) => {
     {
       '@type': 'ListItem',
       item: {
-        '@id': `${homeURL}/categories`,
-        name: categories,
+        '@id': `${homeURL}/proizvodi`,
+        name: proizvodi,
       },
       position: 2,
     },
