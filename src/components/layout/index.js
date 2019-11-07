@@ -18,6 +18,9 @@ const Layout = ({ children, pageContext: { locale } }) => {
         </Link>{' '}
         <Link to={`/proizvodi/`}>
           Proizvodi
+        </Link>{' '}
+        <Link to={`/clanovi/`}>
+          Clanovi
         </Link>
       </nav>
       <main>
