@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link, graphql } from 'gatsby'
 import { LocaleContext } from '../components/layout'
+import SEO from '../components/SEO'
 
 export const query = graphql`
 query ProizvodDetailQuery($uid: String!, $locale: String!) {
@@ -128,8 +129,19 @@ const Product = ({ data: { proizvod }, location, pageContext: { locale } }) => {
   const lang = React.useContext(LocaleContext)
   const i18n = lang.i18n[lang.locale]
 
+  console.log(proizvod.data.product_image.url)
+
   return (
     <>
+      <SEO
+        title={`${proizvod.data.product_name.text} | ${i18n.defaultTitleAlt}`}
+        banner={proizvod.data.product_image.url}
+        pathname={location.pathname}
+        locale={locale}
+        desc={proizvod.data.product_description.text}
+        node={proizvod}
+        article
+      />
       <RenderBody
         proizvod={proizvod} />
     </>
