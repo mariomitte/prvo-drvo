@@ -1,6 +1,8 @@
 import React from "react"
 import { graphql } from 'gatsby'
 import { LocaleContext } from '../components/layout'
+import SEO from '../components/SEO'
+import website from '../../config/website'
 
 export const query = graphql`
 query HomeQuery($locale: String!){
@@ -56,6 +58,7 @@ export default ({ data: { home }, pageContext: { locale }, location }) => {
 
   return (
     <>
+      <SEO pathname={location.pathname} locale={locale} />
       <RenderBody home={home.data} />
     </>
   );

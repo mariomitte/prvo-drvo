@@ -21,12 +21,8 @@ exports.onCreatePage = ({ page, actions }) => {
     // Remove the leading AND traling slash from path, e.g. --> categories
     const name = page.path
 
-    console.log(name)
-
     // Create the "slugs" for the pages. Unless default language, add prefix àla "/en"
     const localizedPath = locales[lang].default ? page.path : `${locales[lang].path}${page.path}`
-
-    console.log(localizedPath)
 
     return createPage({
       ...page,
@@ -63,7 +59,6 @@ exports.createPages = async ({ graphql, actions }) => {
   const proizvodiList = result.data.proizvodi.edges
 
   proizvodiList.forEach(edge => {
-    console.log(edge)
     // The uid you assigned in Prismic is the slug!
     createPage({
       path: localizedSlug(edge.node),
