@@ -16,7 +16,13 @@ module.exports = {
       options: {
         repositoryName: `${process.env.PRISMIC_REPO_NAME}`,
         accessToken: `${process.env.PRISMIC_API_KEY}`,
-        lang: 'hr',
+      },
+    },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `data`,
+        path: `${__dirname}/src/data`,
       },
     },
   ]
