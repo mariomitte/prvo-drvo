@@ -3,6 +3,7 @@ import { graphql } from 'gatsby'
 import { LocaleContext } from '../components/layout'
 import SEO from '../components/SEO'
 import website from '../../config/website'
+import Img from "gatsby-image"
 
 export const query = graphql`
 query HomeQuery($locale: String!){

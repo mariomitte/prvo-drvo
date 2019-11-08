@@ -135,7 +135,7 @@ const Product = ({ data: { proizvod }, location, pageContext: { locale } }) => {
     <>
       <SEO
         title={`${proizvod.data.product_name.text} | ${i18n.defaultTitleAlt}`}
-        image={proizvod.data.product_image.url}
+        banner={proizvod.data.product_image.url}
         pathname={location.pathname}
         locale={locale}
         desc={proizvod.data.product_description.text}

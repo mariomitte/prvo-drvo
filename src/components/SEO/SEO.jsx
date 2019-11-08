@@ -8,7 +8,7 @@ import i18n from '../../../config/i18n'
 
 // Complete tutorial: https://www.gatsbyjs.org/docs/add-seo-component/
 
-const SEO = ({ title, desc, banner, pathname, article, node, locale, image }) => {
+const SEO = ({ title, desc, banner, pathname, article, node, locale }) => {
   const { site } = useStaticQuery(query)
   const { defaultTitle, defaultDescription, siteLanguage, headline, proizvodi } = i18n[locale]
 
@@ -150,7 +150,7 @@ const SEO = ({ title, desc, banner, pathname, article, node, locale, image }) =>
       <Helmet title={seo.title}>
         <html lang={siteLanguage} />
         <meta name="description" content={seo.description} />
-        <meta name="image" content={ image ? image.src : seo.image} />
+        <meta name="image" content={seo.image} />
         <meta name="gatsby-starter" content="Gatsby sass starter + gatsby prismic i18n" />
         {/* Insert schema.org data conditionally (webpage/article) + everytime (breadcrumbs) */}
         {!article && <script type="application/ld+json">{JSON.stringify(schemaOrgWebPage)}</script>}
@@ -159,14 +159,18 @@ const SEO = ({ title, desc, banner, pathname, article, node, locale, image }) =>
       </Helmet>
       <Facebook
         desc={seo.description}
-        image={image ? image.src : seo.image}
+        image={seo.image}
         title={seo.title}
         type={article ? 'article' : 'website'}
         url={seo.url}
         locale={ogLanguage}
         name={facebook}
       />
-      <Twitter title={seo.title} image={image ? image.src : seo.image} desc={seo.description} username={twitter} />
+      <Twitter
+        title={seo.title}
+        image={seo.image}
+        desc={seo.description}
+        username={twitter} />
     </>
   )
 }
@@ -181,7 +185,6 @@ SEO.propTypes = {
   article: PropTypes.bool,
   node: PropTypes.object,
   locale: PropTypes.string,
-  image: PropTypes.object,
 }
 
 SEO.defaultProps = {
