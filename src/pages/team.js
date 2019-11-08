@@ -1,10 +1,27 @@
 import React from "react"
 import { graphql } from 'gatsby'
-import { LocaleContext } from '../components/layout'
-import locales from '../../config/i18n'
+import Helmet from 'react-helmet'
+import Img from 'gatsby-image'
+import config from '../../config/website'
 
 export const query = graphql`
 query ClanoviQuery($locale: String!){
+  sviClanovi: allPrismicSviClanovi(filter: { lang: { eq: $locale } }) {
+    edges {
+      node {
+        data {
+          meta_title {
+            html
+            text
+          }
+          meta_description {
+            html
+            text
+          }
+        }
+      }
+    }
+  }
   clanovi: allPrismicAuthor(sort: {order: DESC, fields: first_publication_date}, filter: { lang: { eq: $locale } }) {
     edges {
       node {
@@ -61,12 +78,17 @@ const RenderBody = ({ clanovi }) => (
 )
 
 
-export default ({ data: { clanovi }, pageContext: { locale }, location }) => {
-  const lang = React.useContext(LocaleContext)
-  const i18n = lang.i18n[lang.locale]
+export default ({ data: { sviClanovi, clanovi }, pageContext: { locale }, location }) => {
+
+  const showAll = sviClanovi.edges[0].node.data
 
   return (
     <>
+    <Helmet>
+        <title>{showAll.meta_title.text}</title>
+        <meta charSet="utf-8" />
+        <meta name="description" content={showAll.meta_description.text} />
+      </Helmet>
       <RenderBody clanovi={clanovi.edges} />
     </>
   );

@@ -1,7 +1,8 @@
 import React from 'react'
-import { Link, graphql } from 'gatsby'
+import { graphql } from 'gatsby'
 import { LocaleContext } from '../components/layout'
 import SEO from '../components/SEO'
+import Img from 'gatsby-image'
 
 export const query = graphql`
 query ProizvodDetailQuery($uid: String!, $locale: String!) {
@@ -10,6 +11,14 @@ query ProizvodDetailQuery($uid: String!, $locale: String!) {
     first_publication_date
     last_publication_date
     data {
+      meta_description {
+        html
+        text
+      }
+      meta_title {
+        html
+        text
+      }
       product_description {
         html
         text
@@ -18,6 +27,18 @@ query ProizvodDetailQuery($uid: String!, $locale: String!) {
         alt
         copyright
         url
+        localFile {
+          childImageSharp {
+            fluid(maxWidth: 1920, quality: 90) {
+              ...GatsbyImageSharpFluid_withWebp
+            }
+            resize(width: 1200, quality: 90) {
+              src
+              height
+              width
+            }
+          }
+        }
       }
       product_name {
         html
@@ -54,6 +75,12 @@ query ProizvodDetailQuery($uid: String!, $locale: String!) {
 }
 `
 
+const ProizvodFotografija = ({ proizvod }) => {
+  const { fluid } = proizvod.product_image.localFile.childImageSharp
+
+  return <Img className="product-hero-image" fluid={fluid} />
+}
+
 const RenderSirovine = ({ sirovine }) => {
   return sirovine.map((item) =>
     <li key={item.product1.document[0].slugs}>
@@ -76,13 +103,13 @@ const RenderBody = ({ proizvod }) => (
       <section>
         <div className="l-wrapper">
           <div className="product-hero-inner">
-            <img className="product-hero-image" src={proizvod.data.product_image.url} alt={proizvod.data.product_image.alt} />
+            <ProizvodFotografija proizvod={proizvod} />
             <div className="product-hero-content">
               <div className="product-hero-name">
-                {proizvod.data.product_name.text}
+                {proizvod.product_name.text}
               </div>
               <div className="product-hero-rich-content">
-                {proizvod.data.rich_content.text}
+                {proizvod.rich_content.text}
               </div>
             </div>
           </div>
@@ -92,10 +119,10 @@ const RenderBody = ({ proizvod }) => (
       <section className="product-description">
         <div className="l-wrapper">
           <div className="product-description-title">
-            {proizvod.data.title.text}
+            {proizvod.title.text}
           </div>
           <div className="product-description-content">
-            {proizvod.data.product_description.text}
+            {proizvod.product_description.text}
           </div>
         </div>
       </section>
@@ -110,18 +137,18 @@ const RenderBody = ({ proizvod }) => (
         <div className="l-wrapper">
           <header className="products-grid-header">
             <div className="products-grid-header-title">
-              {proizvod.data.sirovina_naziv.text}
+              {proizvod.sirovina_naziv.text}
             </div>
           </header>
         </div>
         <ul className="products-grid-items-wrapper">
-          <RenderSirovine sirovine={proizvod.data.sirovine} />
+          <RenderSirovine sirovine={proizvod.sirovine} />
         </ul>
       </section>
 
     </div>
 
-    <div data-wio-id={proizvod.data.uid}></div>
+    <div data-wio-id={proizvod.uid}></div>
   </React.Fragment>
 )
 
@@ -129,21 +156,19 @@ const Product = ({ data: { proizvod }, location, pageContext: { locale } }) => {
   const lang = React.useContext(LocaleContext)
   const i18n = lang.i18n[lang.locale]
 
-  console.log(proizvod.data.product_image.url)
-
   return (
     <>
       <SEO
-        title={`${proizvod.data.product_name.text} | ${i18n.defaultTitleAlt}`}
-        banner={proizvod.data.product_image.url}
+        title={`${proizvod.data.meta_title.text} | ${i18n.defaultTitleAlt}`}
+        banner={proizvod.data.product_image.localFile.childImageSharp.fluid.src}
         pathname={location.pathname}
         locale={locale}
-        desc={proizvod.data.product_description.text}
+        desc={proizvod.data.meta_description.text}
         node={proizvod}
         article
       />
       <RenderBody
-        proizvod={proizvod} />
+        proizvod={proizvod.data} />
     </>
   )
 }

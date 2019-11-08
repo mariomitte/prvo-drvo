@@ -1,7 +1,7 @@
 module.exports = {
   pathPrefix: '/',
   title: 'Prvo drvo',
-  titleAlt: 'website',
+  titleAlt: 'Prvo drvo',
   description: 'Prvo drvo',
   headline: 'Prvo drvo, za proizvodnju i preradu',
   url: 'https://prvo-drvo.netlify.com', // Domain of your site. No trailing slash!

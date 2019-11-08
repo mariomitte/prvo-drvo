@@ -2,7 +2,6 @@ import React from "react"
 import { graphql } from 'gatsby'
 import { LocaleContext } from '../components/layout'
 import SEO from '../components/SEO'
-import website from '../../config/website'
 import Img from "gatsby-image"
 
 export const query = graphql`
@@ -13,6 +12,18 @@ query HomeQuery($locale: String!){
         alt
         copyright
         url
+        localFile {
+          childImageSharp {
+            fluid(maxWidth: 1920, quality: 90) {
+              ...GatsbyImageSharpFluid_withWebp
+            }
+            resize(width: 1200, quality: 90) {
+              src
+              height
+              width
+            }
+          }
+        }
       }
       banner_text {
         html
@@ -29,6 +40,12 @@ query HomeQuery($locale: String!){
 }
 `
 
+const BannerFotografija = ({ home }) => {
+  const { fluid } = home.banner_image.localFile.childImageSharp
+
+  return <Img className="homepage-banner-image" fluid={fluid} />
+}
+
 const RenderBody = ({ home }) => (
   <React.Fragment>
     <div className="l-wrapper">
@@ -44,7 +61,7 @@ const RenderBody = ({ home }) => (
     </header>
 
     <section className="homepage-banner">
-      <img className="homepage-banner-image" src={home.banner_image.url} alt={home.banner_image.alt} />
+      <BannerFotografija home={home} />
       <div className="homepage-banner-box-wrapper">
         <div className="homepage-banner-box">
         {home.banner_text.text}
@@ -55,8 +72,6 @@ const RenderBody = ({ home }) => (
 );
 
 export default ({ data: { home }, pageContext: { locale }, location }) => {
-  const lang = React.useContext(LocaleContext)
-
   return (
     <>
       <SEO pathname={location.pathname} locale={locale} />
