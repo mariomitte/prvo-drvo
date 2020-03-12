@@ -61,8 +61,8 @@ module.exports = {
     {
       resolve: 'gatsby-plugin-robots-txt',
       options: {
-        host: 'https://prvo-drvo.netlify.com',
-        sitemap: 'https://prvo-drvo.netlify.com/sitemap.xml',
+        host: 'https://www.prvo-drvo.com',
+        sitemap: 'https://www.prvo-drvo.com/sitemap.xml',
         policy: [{ userAgent: '*', allow: '/' }]
       }
     },
