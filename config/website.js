@@ -3,9 +3,9 @@ module.exports = {
   title: 'Prvo drvo',
   titleAlt: 'Prvo drvo',
   description: 'Prvo drvo',
-  headline: 'Prvo drvo, za proizvodnju i preradu',
-  url: 'https://prvo-drvo.netlify.com', // Domain of your site. No trailing slash!
-  logo: '/logos/logo-1024.png', // Used for SEO
+  headline: 'Prvo drvo, za proizvodnju i preradu drva',
+  url: 'https://www.prvo-drvo.com', // Domain of your site. No trailing slash!
+  logo: '/logos/web.jpg', // Used for SEO
   ogLanguage: 'hr_HR', // Facebook Language
 
   // JSONLD / Manifest
@@ -17,7 +17,7 @@ module.exports = {
 
   twitter: '@prvo_drvo', // Twitter Username
   facebook: 'prvo-drvo', // Facebook Site Name
-  googleAnalyticsID: 'UA-XXXXXX-X',
+  googleAnalyticsID: 'UA-160438893-1',
 
   // skipNavId: 'reach-skip-nav', // ID for the "Skip to content" a11y feature
 }
