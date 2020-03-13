@@ -5,6 +5,8 @@ import React from 'react'
 import { useStaticQuery, graphql, Link } from 'gatsby'
 import i18n from '../../../config/i18n'
 import LocalizedLink from '../linkResolve'
+import LanguageSwitcher from '../LanguageSwitcher'
+import ResponsiveMenu from '../ResponsiveMenu'
 
 import '../../stylesheets/main.scss'
 
@@ -19,13 +21,13 @@ const Layout = ({ children, pageContext: { locale } }) => {
     let data = localData[0].node.data
 
     const headerItems = data.header_nav_items.map((item) =>
-      <LocalizedLink key={item.link.id} className="header-nav-link" to={item.link.uid}>
+      <LocalizedLink key={item.link.id} className="btn nav-link m-2" to={item.link.uid}>
         {item.text}
       </LocalizedLink>
     )
 
     const navItems = data.footer_nav_items.map((item) =>
-      <LocalizedLink key={item.link.id} className="header-nav-link" to={item.link.uid}>
+      <LocalizedLink key={item.link.id} className="nav-link m-2" to={item.link.uid}>
         {item.text}
       </LocalizedLink>
     )
@@ -43,41 +45,62 @@ const Layout = ({ children, pageContext: { locale } }) => {
     })
 
     return <LocaleContext.Provider value={{ locale, i18n }}>
-      <div className="header-inner">
-        <LocalizedLink to="/" aria-label="Back to Home">
-          {data.site_name}
-        </LocalizedLink>
-        <nav className="header-nav">
-          {headerItems}
-        </nav>
-        <div className="locale-switcher" data-name="locale-switcher">
-          <Link hrefLang="hr" to="/">
-            HR
-          </Link>{' '}
-          /{' '}
-          <Link hrefLang="en-gb" to="/en/">
-            EN
-          </Link>
+      <div className="company">
+        <div className="ml-5 mr-5 d-flex flex-row-reverse justify-content-between">
+          <div className="d-flex flex-column align-items-end">
+            <small>Prvo drvo j.d.o.o.</small>
+            <small>+385423425234</small>
+          </div>
+          <LanguageSwitcher language={locale} />
         </div>
       </div>
+      <nav className="d-flex align-items-center">
+        <div className="container">
+          <div className="d-flex justify-content-between align-items-center">
+            <LocalizedLink to="/" aria-label={data.site_name} className="nav-link">
+              <h2>{data.site_name}</h2>
+            </LocalizedLink>
+            <div className="proizvodi">
+              {headerItems}
+            </div>
+            <ResponsiveMenu items={headerItems} locale={locale} />
+          </div>
+        </div>
+      </nav>
       <main>
         {children}
       </main>
-      <footer className="footer">
-          <div className="footer-inner">
-            <div>
-              <p className="footer-name">
-                {localData[0].node.data.site_name}
-              </p>
-              <div className="footer-social-items">
-                {socialItems}
+      <footer className="site-footer">
+        <div className="bottom">
+          <div className="container">
+            <div className="row">
+
+              <div className="w-100 d-flex flex-column">
+                <div className="d-flex justify-content-between align-items-center">
+                  <p className="copyright-text">
+                    <small>Sva prava pridržana  © {localData[0].node.data.site_name}</small>
+                  </p>
+                  <div>
+                    {navItems}
+                    <LanguageSwitcher language={locale} footer />
+                  </div>
+                </div>
+
+                <div className="d-flex">
+                  {socialItems}
+                </div>
               </div>
+
+              <div className="w-100 d-flex justify-content-center">
+                <div className="credits">
+                  <small>Designed by <a href="#">mitte</a></small>
+                </div>
+              </div>
+
             </div>
-            <nav className="footer-nav">
-              {navItems}
-            </nav>
           </div>
-        </footer>
+        </div>
+      </footer>
     </LocaleContext.Provider>
   } else {
     return <>

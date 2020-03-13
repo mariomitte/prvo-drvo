@@ -1,0 +1,13 @@
+.responsive-dropdown-menu {
+  background-color: $theme-main-color;
+  font-family: $font-family-base;
+  margin-top: 2rem;
+  position: absolute;
+  z-index: $zindex-dropdown;
+  left: 1rem;
+  right: 1rem;
+}
+
+.responsive-dropdown-item {
+  min-width: 70px;
+}

@@ -1,10 +1,41 @@
 html {
   color: #121212;
-  font-family: $font-sans;
+  font-family: $font-family-base;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
 
+body {
+  font-family: $font-family-base;
+  overflow-x: hidden;
+}
+
 main {
   min-height: calc(100vh - 513px);
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+video {
+  width: 100%;
+  max-width: 100%;
+  height: auto;
+  vertical-align: top;
+}
+
+.btn,
+.nav-link {
+  color: $nav-link-color;
+}
+
+.btn:hover {
+  background-color: $btn-hover-color;
+  color: #fff;
+}
+
+.btn:focus {
+  color: #fff;
 }

@@ -1,0 +1,68 @@
+@function get-breakpoints($key: "xl") {
+  @return map-get($container-max-widths, $key);
+}
+
+.navbar-container {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 99;
+}
+
+.navbar {
+  background-color: $primary;
+}
+
+.hide {
+  display: none;
+}
+
+.show {
+  display: none;
+}
+
+@include media-breakpoint-up(sm) {
+  .navbar-container {
+    bottom: 1rem;
+  }
+  .navbar {
+    min-width: get-breakpoints("sm");
+  }
+  .navbar,
+  .navbar-collapse {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .navbar-nav {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    width: 100%;
+  }
+  .navbar .navbar-brand {
+    display: none;
+  }
+}
+@include media-breakpoint-up(md) {
+  .navbar-container {
+    bottom: 2rem;
+  }
+  .navbar {
+    min-width: get-breakpoints("md");
+  }
+}
+@include media-breakpoint-up(lg) {
+  .navbar-container {
+    bottom: 3rem;
+  }
+  .navbar {
+    min-width: get-breakpoints("lg");
+  }
+}
+@include media-breakpoint-up(xl) {
+  .navbar {
+    min-width: get-breakpoints("xl");
+  }
+}

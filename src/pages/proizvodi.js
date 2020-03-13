@@ -96,10 +96,6 @@ const RenderProductList = ({ proizvodi }) => {
 
 const RenderBody = ({ proizvodi }) => (
   <React.Fragment>
-    <div className="l-wrapper">
-      <hr className="separator-hr" />
-    </div>
-
     <section className="products-section">
       <div className="products-grid-items-wrapper">
         <RenderProductList proizvodi={proizvodi} />

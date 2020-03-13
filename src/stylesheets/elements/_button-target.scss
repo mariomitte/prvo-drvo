@@ -1,0 +1,25 @@
+.btn-target {
+  background-color: $theme-main-color;
+  font-weight: $font-weight-bold;
+  padding: 15px 45px;
+  border-radius: 50px;
+}
+
+.btn-target:hover {
+  background-color: $btn-hover-color;
+  color: #fff;
+}
+
+.btn-target:focus {
+  color: #fff;
+}
+
+.btn-target-ghost {
+  border: 3px solid #fff;
+  background-color: transparent;
+}
+
+.btn-target-ghost:hover {
+  background-color: #fff;
+  color: #199EB8;
+}

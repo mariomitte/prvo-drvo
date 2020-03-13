@@ -42,32 +42,50 @@ query HomeQuery($locale: String!){
 
 const BannerFotografija = ({ home }) => {
   const { fluid } = home.banner_image.localFile.childImageSharp
+  console.log('banner img', home.banner_image.url)
 
   return <Img className="homepage-banner-image" fluid={fluid} />
 }
 
 const RenderBody = ({ home }) => (
   <React.Fragment>
-    <div className="l-wrapper">
-      <hr className="separator-hr" />
-    </div>
+    <section
+      className="hero"
+      style={{ backgroundImage: `url(${home.banner_image.url})` }}
+    >
+      <div className="container">
+        <div className="col-md-12">
+          <h1>
+            {home.title.text}
+          </h1>
 
-    <header className="homepage-header">
-      <div className="l-wrapper">
-        <div className="homepage-header-title">
-          {home.title.text}
-        </div>
-      </div>
-    </header>
-
-    <section className="homepage-banner">
-      <BannerFotografija home={home} />
-      <div className="homepage-banner-box-wrapper">
-        <div className="homepage-banner-box">
-        {home.banner_text.text}
+          <p className="tagline">
+            {home.banner_text.text}
+          </p>
         </div>
       </div>
     </section>
+    <div>
+      <br />
+      <br />
+      <br />
+    </div>
+    <section>
+      <BannerFotografija home={home} />
+    </section>
+    <div>
+      <br />
+      <br />
+      <br />
+    </div>
+    <section>
+      <BannerFotografija home={home} />
+    </section>
+    <div>
+      <br />
+      <br />
+      <br />
+    </div>
   </React.Fragment>
 );
 

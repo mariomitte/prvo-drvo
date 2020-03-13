@@ -1,6 +1,7 @@
+// @import "node_modules/bootstrap-scss/bootstrap";
+// @import "./utils/globals";
+
 @import "./utils/module";
 @import "./base/module";
-@import "./layouts/module";
-@import "./atoms/module";
+@import "./elements/module";
 @import "./fragments/module";
-@import "./pages/module";

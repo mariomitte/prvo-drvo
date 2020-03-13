@@ -1,0 +1,41 @@
+.company {
+  width: 100%;
+}
+
+nav {
+  background-color: $theme-main-color;
+  font-family: $font-family-base;
+  min-height: 60px;
+}
+
+.nav-link {
+  color: $nav-link-color;
+}
+
+.nav-link:hover {
+  color: $nav-link-color;
+}
+
+.menu img {
+  max-width: 34px;
+}
+
+.menu:hover {
+  cursor: pointer;
+}
+
+@include media-breakpoint-up(sm) {
+  nav .menu {
+    display: none;
+  }
+}
+
+@include media-breakpoint-down(xs) {
+  nav .proizvodi {
+    display: none;
+  }
+
+  .company {
+    display: none;
+  }
+}
