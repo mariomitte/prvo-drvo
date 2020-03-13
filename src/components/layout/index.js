@@ -2,7 +2,7 @@
 /* eslint react/destructuring-assignment: 0 */
 
 import React from 'react'
-import { useStaticQuery, graphql, Link } from 'gatsby'
+import { useStaticQuery, graphql } from 'gatsby'
 import i18n from '../../../config/i18n'
 import LocalizedLink from '../linkResolve'
 import LanguageSwitcher from '../LanguageSwitcher'
@@ -93,7 +93,7 @@ const Layout = ({ children, pageContext: { locale } }) => {
 
               <div className="w-100 d-flex justify-content-center">
                 <div className="credits">
-                  <small>Designed by <a href="#">mitte</a></small>
+                  <small>Designed by <a href="@mitte">mitte</a></small>
                 </div>
               </div>
 

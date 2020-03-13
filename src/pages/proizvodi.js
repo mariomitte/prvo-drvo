@@ -3,7 +3,6 @@ import { graphql } from 'gatsby'
 import LocalizedLink from '../components/linkResolve'
 import Helmet from 'react-helmet'
 import Img from 'gatsby-image'
-import config from '../../config/website'
 
 export const query = graphql`
 query ProizvodiQuery($locale: String!){

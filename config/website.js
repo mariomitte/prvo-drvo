@@ -12,8 +12,8 @@ module.exports = {
   favicon: 'src/favicon.ico', // Used for manifest favicon generation
   shortName: 'prvodrvo', // shortname for manifest. MUST be shorter than 12 characters
   author: 'prvo_drvo', // Author for schemaORGJSONLD
-  themeColor: '#3D63AE',
-  backgroundColor: '#EBEDF2',
+  themeColor: '#199EB8',
+  backgroundColor: '#E04F00',
 
   twitter: '@prvo_drvo', // Twitter Username
   facebook: 'prvo-drvo', // Facebook Site Name

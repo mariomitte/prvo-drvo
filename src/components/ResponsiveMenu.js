@@ -55,7 +55,7 @@ class ResponsiveMenu extends Component {
                   to={{ opacity: 1 }}
                 >
                   {(trailItem, key) => trailProps => (
-                    <div style={trailProps} className="responsive-dropdown-item btn m-2">
+                    <div style={trailProps} className="responsive-dropdown-item btn m-2" onClick={this.handleButton}>
                       {trailItem}
                     </div>
                   )}

@@ -1,7 +1,6 @@
 import React from "react"
 import { graphql } from 'gatsby'
 import Img from 'gatsby-image'
-import config from '../../config/website'
 
 export const query = graphql`
 query GalerijaQuery($locale: String!){
@@ -40,7 +39,7 @@ query GalerijaQuery($locale: String!){
 const Fotografija = ({ fotografija }) => {
   const { fluid } = fotografija.naziv_slike.localFile.childImageSharp
 
-  return <Img className="rounded m-2" fluid={fluid} />
+  return <Img className="rounded m-2 gallery-photo-item" fluid={fluid} />
 }
 
 const RenderGallery = ({ galerija }) => {

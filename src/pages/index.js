@@ -1,8 +1,6 @@
 import React from "react"
 import { graphql } from 'gatsby'
-import { LocaleContext } from '../components/layout'
 import SEO from '../components/SEO'
-import Img from "gatsby-image"
 
 export const query = graphql`
 query HomeQuery($locale: String!){
@@ -33,18 +31,28 @@ query HomeQuery($locale: String!){
         html
         text
       }
+      title_ostalo {
+        html
+        text
+      }
+      sadrzaj_ostalo {
+        html
+        text
+      }
+      title1 {
+        html
+        text
+      }
+      about {
+        html
+        text
+      }
     }
     id
     type
   }
 }
 `
-
-const BannerFotografija = ({ home }) => {
-  const { fluid } = home.banner_image.localFile.childImageSharp
-
-  return <Img className="homepage-banner-image" fluid={fluid} />
-}
 
 const RenderBody = ({ home }) => (
   <div className="mb-5">
@@ -58,29 +66,17 @@ const RenderBody = ({ home }) => (
         </div>
       </div>
     </section>
-    <div>
-      <br />
-      <br />
-      <br />
-    </div>
-    <section className="container">
-      asdaklfjdakjfkjdsfklsjdkafj
+    <section className="container about">
+      <div class="mt-5 mb-5">
+        <h1 className="mb-5">{home.title1.text}</h1>
+        <div dangerouslySetInnerHTML={{ __html: home.about.html }} />
+      </div>
     </section>
-    <div>
-      <br />
-      <br />
-      <br />
-    </div>
-    <section className="container">
-      asdaklfjdakjfkjdsfklsjdkafj
-    </section>
-    <div>
-      <br />
-      <br />
-      <br />
-    </div>
-    <section className="container">
-      asdaklfjdakjfkjdsfklsjdkafj
+    <section className="container other">
+      <div>
+        <h4 className="mb-4">{home.title_ostalo.text}</h4>
+        <p>{home.sadrzaj_ostalo.text}</p>
+      </div>
     </section>
   </div>
 );

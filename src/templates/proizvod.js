@@ -83,12 +83,8 @@ const ProizvodFotografija = ({ proizvod }) => {
 
 const RenderSirovine = ({ sirovine }) => {
   return sirovine.map((item) =>
-    <li key={item.product1.document[0].slugs}>
-      <p className="products-grid-item-name">
-        <a href={item.product1.document[0].slugs}>
-          {item.product1.document[0].data.title.text}
-        </a>
-      </p>
+    <li className="pt-1 pb-1" key={item.product1.document[0].slugs}>
+      {item.product1.document[0].data.title.text}
     </li>
   )
 }
@@ -128,16 +124,18 @@ const RenderBody = ({ proizvod }) => (
       </div>
 
       <section>
-        <div className="l-wrapper">
+        <div className="mb-2">
           <header className="products-grid-header">
-            <div className="products-grid-header-title">
+            <div className="font-weight-bold products-grid-header-title">
               {proizvod.sirovina_naziv.text}
             </div>
           </header>
         </div>
-        <ul className="products-grid-items-wrapper">
-          <RenderSirovine sirovine={proizvod.sirovine} />
-        </ul>
+        <div className="container">
+          <ul className="d-flex flex-column">
+            <RenderSirovine sirovine={proizvod.sirovine} />
+          </ul>
+        </div>
       </section>
 
     </div>

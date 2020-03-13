@@ -4,14 +4,6 @@ import { Transition, Trail } from 'react-spring/renderprops'
 import hr from '../hr.png'
 import gb from '../gb.png'
 
-const Language = () => (
-  <div>
-    {' '}
-    /{' '}
-
-  </div>
-)
-
 class LanguageSwitcher extends Component {
   container = React.createRef();
   state = {
