@@ -39,6 +39,7 @@ exports.createPages = async ({ graphql, actions }) => {
   const { createPage } = actions
 
   const proizvodiTemplate = require.resolve('./src/templates/proizvod.js')
+  const novostiTemplate = require.resolve('./src/templates/novost.js')
 
   const result = await wrapper(
     graphql(`
@@ -52,17 +53,40 @@ exports.createPages = async ({ graphql, actions }) => {
             }
           }
         }
+        novosti: allPrismicNovosti(sort: { fields: [data___date], order: DESC }) {
+          edges {
+            node {
+              id
+              uid
+              lang
+            }
+          }
+        }
       }
     `)
   )
 
   const proizvodiList = result.data.proizvodi.edges
+  const novostiList = result.data.novosti.edges
 
   proizvodiList.forEach(edge => {
     // The uid you assigned in Prismic is the slug!
     createPage({
       path: localizedSlug(edge.node),
       component: proizvodiTemplate,
+      context: {
+        // Pass the unique ID (uid) through context so the template can filter by it
+        uid: edge.node.uid,
+        locale: edge.node.lang,
+      },
+    })
+  })
+
+  novostiList.forEach(edge => {
+    // The uid you assigned in Prismic is the slug!
+    createPage({
+      path: localizedSlug(edge.node),
+      component: novostiTemplate,
       context: {
         // Pass the unique ID (uid) through context so the template can filter by it
         uid: edge.node.uid,

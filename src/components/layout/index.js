@@ -36,7 +36,7 @@ const Layout = ({ children, pageContext: { locale } }) => {
       return (
         <a
           key={index}
-          className="footer-social-item"
+          className="footer-social-item m-1"
           href={item.link.url}
         >
           <img src={item.icon.url} alt={item.icon.alt} />

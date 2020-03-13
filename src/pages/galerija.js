@@ -38,7 +38,6 @@ query GalerijaQuery($locale: String!){
 `
 
 const Fotografija = ({ fotografija }) => {
-  console.log(fotografija)
   const { fluid } = fotografija.naziv_slike.localFile.childImageSharp
 
   return <Img className="rounded m-2" fluid={fluid} />
@@ -52,13 +51,15 @@ const RenderGallery = ({ galerija }) => {
   )
 }
 
-export default ({ data: { svaGalerija }, pageContext: { locale }, location }) => {
+export default ({ data: { svaGalerija } }) => {
 
   const showAll = svaGalerija.edges[0].node.data
 
   return (
-    <>
-      <RenderGallery galerija={showAll.general} />
-    </>
+    <div style={{ minHeight: "80vh" }} className="mt-4 container">
+      <div className="gallery d-flex">
+        <RenderGallery galerija={showAll.general} />
+      </div>
+    </div>
   );
 }

@@ -6,8 +6,8 @@ import Img from 'gatsby-image'
 import config from '../../config/website'
 
 export const query = graphql`
-query ProizvodiQuery($locale: String!){
-  sviProizvodi: allPrismicSviProizvodi(filter: { lang: { eq: $locale } }) {
+query NovostiQuery($locale: String!){
+  sviNovosti: allPrismicSviNovosti(filter: { lang: { eq: $locale } }) {
     edges {
       node {
         data {
@@ -23,11 +23,11 @@ query ProizvodiQuery($locale: String!){
       }
     }
   }
-  proizvodi: allPrismicProizvod(sort: { fields: [data___date], order: DESC }, filter: { lang: { eq: $locale } }) {
+  novosti: allPrismicNovosti(sort: { fields: [data___date], order: DESC }, filter: { lang: { eq: $locale } }) {
     edges {
       node {
         data {
-          title {
+          product_name {
             html
             text
           }
@@ -48,14 +48,6 @@ query ProizvodiQuery($locale: String!){
               }
             }
           }
-          product_name {
-            html
-            text
-          }
-          product_description {
-            html
-            text
-          }
           meta_title {
             html
             text
@@ -74,42 +66,43 @@ query ProizvodiQuery($locale: String!){
 }
 `
 
-const ProizvodiFotografija = ({ proizvod }) => {
+const NovostiFotografija = ({ proizvod }) => {
   const { fluid } = proizvod.product_image.localFile.childImageSharp
 
   return <Img className="rounded" fluid={fluid} />
 }
 
-const RenderProductList = ({ proizvodi }) => {
-  return proizvodi.map((item) =>
+const RenderNovostiList = ({ novosti }) => {
+  return novosti.map((item) =>
     <div key={item.node.id} className="mt-4 mb-4 products-wrapper">
       <LocalizedLink to={item.node.uid}>
-        <ProizvodiFotografija proizvod={item.node.data} />
+        <NovostiFotografija proizvod={item.node.data} />
       </LocalizedLink>
       <div className="products-box-wrapper">
         <div className="p-2 products-box-items">
           <p>
               {item.node.data.product_name.text}
           </p>
-          <p>{item.node.data.product_description.text}</p>
         </div>
       </div>
     </div>
   )
 }
 
-const RenderBody = ({ proizvodi }) => (
+const RenderBody = ({ novosti }) => (
   <div className="container d-flex justify-content-center">
     <section className="products-section">
-      <RenderProductList proizvodi={proizvodi} />
+      <RenderNovostiList novosti={novosti} />
     </section>
   </div>
 )
 
 
-export default ({ data: { sviProizvodi, proizvodi }, pageContext: { locale }, location }) => {
+export default ({ data: { sviNovosti, novosti }, pageContext: { locale }, location }) => {
 
-  const showAll = sviProizvodi.edges[0].node.data
+  console.log('novosti', novosti)
+
+  const showAll = sviNovosti.edges[0].node.data
 
   return (
     <>
@@ -118,7 +111,7 @@ export default ({ data: { sviProizvodi, proizvodi }, pageContext: { locale }, lo
         <meta charSet="utf-8" />
         <meta name="description" content={showAll.meta_description.text} />
       </Helmet>
-      <RenderBody proizvodi={proizvodi.edges} />
+      <RenderBody novosti={novosti.edges} />
     </>
   );
 }

@@ -42,26 +42,19 @@ query HomeQuery($locale: String!){
 
 const BannerFotografija = ({ home }) => {
   const { fluid } = home.banner_image.localFile.childImageSharp
-  console.log('banner img', home.banner_image.url)
 
   return <Img className="homepage-banner-image" fluid={fluid} />
 }
 
 const RenderBody = ({ home }) => (
-  <React.Fragment>
+  <div className="mb-5">
     <section
       className="hero"
       style={{ backgroundImage: `url(${home.banner_image.url})` }}
     >
-      <div className="container">
-        <div className="col-md-12">
-          <h1>
-            {home.title.text}
-          </h1>
-
-          <p className="tagline">
-            {home.banner_text.text}
-          </p>
+      <div className="products-box-wrapper">
+        <div className="p-5 products-box-items">
+          <p>{home.banner_text.text}</p>
         </div>
       </div>
     </section>
@@ -70,23 +63,26 @@ const RenderBody = ({ home }) => (
       <br />
       <br />
     </div>
-    <section>
-      <BannerFotografija home={home} />
+    <section className="container">
+      asdaklfjdakjfkjdsfklsjdkafj
     </section>
     <div>
       <br />
       <br />
       <br />
     </div>
-    <section>
-      <BannerFotografija home={home} />
+    <section className="container">
+      asdaklfjdakjfkjdsfklsjdkafj
     </section>
     <div>
       <br />
       <br />
       <br />
     </div>
-  </React.Fragment>
+    <section className="container">
+      asdaklfjdakjfkjdsfklsjdkafj
+    </section>
+  </div>
 );
 
 export default ({ data: { home }, pageContext: { locale }, location }) => {

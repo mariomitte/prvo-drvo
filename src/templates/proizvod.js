@@ -78,7 +78,7 @@ query ProizvodDetailQuery($uid: String!, $locale: String!) {
 const ProizvodFotografija = ({ proizvod }) => {
   const { fluid } = proizvod.product_image.localFile.childImageSharp
 
-  return <Img className="product-hero-image" fluid={fluid} />
+  return <Img className="mt-2 mb-4 rounded-lg" fluid={fluid} />
 }
 
 const RenderSirovine = ({ sirovine }) => {
@@ -95,20 +95,14 @@ const RenderSirovine = ({ sirovine }) => {
 
 const RenderBody = ({ proizvod }) => (
   <React.Fragment>
-    <div className="l-wrapper">
-      <hr className="separator-hr" />
-    </div>
-
-    <div className="product-sections-wrapper">
-      <section>
-        <div className="l-wrapper">
+    <div className="container mb-5">
+      <section className="d-flex justify-content-center">
+        <div className="products-section">
           <div className="product-hero-inner">
             <ProizvodFotografija proizvod={proizvod} />
             <div className="product-hero-content">
-              <div className="product-hero-name">
-                {proizvod.product_name.text}
-              </div>
-              <div className="product-hero-rich-content">
+              <h1>{proizvod.product_name.text}</h1>
+              <div className="mt-4 product-hero-rich-content">
                 {proizvod.rich_content.text}
               </div>
             </div>
@@ -116,7 +110,7 @@ const RenderBody = ({ proizvod }) => (
         </div>
       </section>
 
-      <section className="product-description">
+      <section className="mt-4 product-description">
         <div className="l-wrapper">
           <div className="product-description-title">
             {proizvod.title.text}

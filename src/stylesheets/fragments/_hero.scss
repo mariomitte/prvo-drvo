@@ -69,3 +69,9 @@
     padding: 150px 0;
   }
 }
+
+@include media-breakpoint-down(sm) {
+  .hero {
+    max-height: 60vh;
+  }
+}

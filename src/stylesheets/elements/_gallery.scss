@@ -1,0 +1,15 @@
+.gallery {
+  flex-wrap: wrap;
+}
+
+.gallery-item {
+  width: 100%;
+  flex: 1;
+  flex-basis: 100%;
+}
+
+@include media-breakpoint-up(sm) {
+  .gallery-item {
+    max-width: 340px;
+  }
+}
