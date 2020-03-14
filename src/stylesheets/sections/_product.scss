@@ -12,7 +12,7 @@
 .products-wrapper {
   position: relative;
 
-  @media (max-width: 700px) {
+  @media (max-width: 1000px) {
     position: static;
     overflow: hidden;
     font-size: 0;
